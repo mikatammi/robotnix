@@ -35,6 +35,18 @@
     "sha256": "0lkjx5jv5gvjm0c7wsd0f616waxxfiqz05pyfarxs0kj805fzc71",
     "url": "https://github.com/TheMuppets/proprietary_vendor_oneplus_cheeseburger"
   },
+  "vendor/oneplus/dumpling": {
+    "date": "2022-11-20T12:09:35+01:00",
+    "deepClone": false,
+    "fetchLFS": true,
+    "fetchSubmodules": false,
+    "hash": "sha256-F3RBSsvESP5AeNUr2av1j/V5Qo1ThQLxuGH61WmE2Kg=",
+    "leaveDotGit": false,
+    "path": "/nix/store/h73xlb4zzj6k2knl665q20jr6d5l51f5-proprietary_vendor_oneplus_dumpling",
+    "rev": "645b844b9db46656b9ae8ef32318a78c2569a597",
+    "sha256": "1a6qhilxbyk1p3qh51akim17kxcgynmxjaymg10gwj64rd542x0p",
+    "url": "https://github.com/TheMuppets/proprietary_vendor_oneplus_dumpling"
+  },
   "vendor/oneplus/instantnoodlep": {
     "date": "2023-09-10T10:26:50+02:00",
     "deepClone": false,

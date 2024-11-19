@@ -44,6 +44,21 @@
     "sha256": "0fl6a72i2rs256b4izqxqs2c82l8ivcw1q8k06ykgaz7ja1v3c1z",
     "url": "https://github.com/LineageOS/android_device_oneplus_cheeseburger"
   },
+  "device/oneplus/dumpling": {
+    "date": "2023-04-17T20:07:49+02:00",
+    "deepClone": false,
+    "deps": [
+      "device/oneplus/msm8998-common"
+    ],
+    "fetchLFS": true,
+    "fetchSubmodules": false,
+    "hash": "sha256-5rfvuujs7r789KYByH9soCqKiXr/Y+PyGgpil14H2/w=",
+    "leaveDotGit": false,
+    "path": "/nix/store/9kz80jsj7wlvkilbp1dnvlx0dz2xbfwq-android_device_oneplus_dumpling",
+    "rev": "9842f9ab9ad623f572fa936610e3c5772ecedda4",
+    "sha256": "1z6v0xg9fqha3brf6qzzga4qlam0dizwh0d6ykybxvpcx2xfzdz6",
+    "url": "https://github.com/LineageOS/android_device_oneplus_dumpling"
+  },
   "device/oneplus/instantnoodlep": {
     "date": "2024-01-16T10:23:06+00:00",
     "deepClone": false,
