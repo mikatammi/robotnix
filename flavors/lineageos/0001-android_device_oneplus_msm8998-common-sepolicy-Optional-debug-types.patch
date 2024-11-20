@@ -1,0 +1,47 @@
+From dff17ff200251e0082cd91d4f80227dc67c9c413 Mon Sep 17 00:00:00 2001
+From: Mika Tammi <mikatammi@gmail.com>
+Date: Wed, 20 Nov 2024 02:24:11 +0200
+Subject: msm8998-common: sepolicy: Optional debug types
+
+vendor_sensors_dbg_prop and qti_debugfs are not available during user
+builds.
+
+Change-Id: I7e235d7dd9bba5c0471b302edd18e1b5e4585bdb
+Signed-off-by: Mika Tammi <mikatammi@gmail.com>
+---
+ sepolicy/vendor/genfs_contexts        | 6 ++++--
+ sepolicy/vendor/hal_camera_default.te | 4 +++-
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/sepolicy/vendor/genfs_contexts b/sepolicy/vendor/genfs_contexts
+index bd29c83..01e95ed 100644
+--- a/sepolicy/vendor/genfs_contexts
++++ b/sepolicy/vendor/genfs_contexts
+@@ -1,6 +1,8 @@
+ genfscon debugfs /system_stats         u:object_r:debugfs_rpm:s0
+-genfscon debugfs /rmt_storage/rmts     u:object_r:qti_debugfs:s0
+-genfscon debugfs /msm_core             u:object_r:qti_debugfs:s0
++userdebug_or_eng(`
++  genfscon debugfs /rmt_storage/rmts     u:object_r:qti_debugfs:s0
++  genfscon debugfs /msm_core             u:object_r:qti_debugfs:s0
++')
+ 
+ genfscon proc /touchpanel              u:object_r:proc_touchpanel:s0
+ genfscon proc /tri-state-key           u:object_r:proc_touchpanel:s0
+diff --git a/sepolicy/vendor/hal_camera_default.te b/sepolicy/vendor/hal_camera_default.te
+index 6494f4b..1fd4aeb 100644
+--- a/sepolicy/vendor/hal_camera_default.te
++++ b/sepolicy/vendor/hal_camera_default.te
+@@ -7,6 +7,8 @@ typeattribute hal_camera_default data_between_core_and_vendor_violators;
+ r_dir_file(hal_camera_default, camera_data_file)
+ 
+ get_prop(hal_camera_default, bootanim_system_prop)
+-get_prop(hal_camera_default, vendor_sensors_dbg_prop)
++userdebug_or_eng(`
++  get_prop(hal_camera_default, vendor_sensors_dbg_prop)
++')
+ get_prop(hal_camera_default, vendor_system_prop)
+ set_prop(hal_camera_default, camera_prop)
+-- 
+2.44.1
+
