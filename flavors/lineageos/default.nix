@@ -118,7 +118,9 @@ in mkIf (config.flavor == "lineageos")
         })
       ];
       "device/oneplus/msm8998-common".patches = [
-        ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types.patch
+        (if lib.versionAtLeast (toString config.androidVersion) "13"
+         then ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types-20.patch
+         else ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types-19.patch)
       ];
 
       # LineageOS will sometimes force-push to this repo, and the older revisions are garbage collected.
