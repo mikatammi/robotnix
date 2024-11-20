@@ -117,6 +117,9 @@ in mkIf (config.flavor == "lineageos")
           revert = true;
         })
       ];
+      "device/oneplus/msm8998-common".patches = [
+        ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types.patch
+      ];
 
       # LineageOS will sometimes force-push to this repo, and the older revisions are garbage collected.
       # So we'll just build chromium webview ourselves.
