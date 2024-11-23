@@ -124,11 +124,6 @@ in mkIf (config.flavor == "lineageos")
           revert = true;
         })
       ];
-      "device/oneplus/msm8998-common".patches = [
-        (if lib.versionAtLeast (toString config.androidVersion) "13"
-         then ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types-20.patch
-         else ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types-19.patch)
-      ];
 
       # LineageOS will sometimes force-push to this repo, and the older revisions are garbage collected.
       # So we'll just build chromium webview ourselves.
@@ -170,6 +165,16 @@ in mkIf (config.flavor == "lineageos")
   in [
     (filterDirsAttrs (getAttrs (filteredRelpaths) deviceDirs))
     (filterDirsAttrs (getAttrs (vendorRelpaths) vendorDirs))
+
+    # Only add this patch if we are building for a device that needs
+    # device/oneplus/msm8998-common
+    (lib.optionalAttrs (lib.elem "device/oneplus/msm8998-common" relpaths) {
+      "device/oneplus/msm8998-common".patches = [
+        (if lib.versionAtLeast (toString config.androidVersion) "13"
+         then ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types-20.patch
+         else ./0001-android_device_oneplus_msm8998-common-sepolicy-Optional-debug-types-19.patch)
+      ];
+    })
   ]));
 
   source.manifest.url = mkDefault "https://github.com/LineageOS/android.git";
