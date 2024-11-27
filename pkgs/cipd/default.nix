@@ -1,23 +1,25 @@
 # SPDX-FileCopyrightText: 2020 Daniel Fullmer and robotnix contributors
 # SPDX-License-Identifier: MIT
 
-{ lib, stdenv, buildGoPackage, fetchgit, fetchhg, fetchbzr, fetchsvn }:
+{ lib, buildGoModule, fetchgit }:
 
-buildGoPackage rec {
+let
+  version = "2.6.18"; # 2024-11-27
+  rev = "9c318e62acc48563e0ee01bdf00bc32ed922337d";
+in
+buildGoModule {
+  inherit version rev;
   name = "cipd-${version}";
-  version = "2019-12-13";
-  rev = "95480de32ef149429a7a6ab0e5c7380bfb0f102b";
 
-  goPackagePath = "go.chromium.org/luci";
   subPackages = [ "cipd/client/cmd/cipd" ];
 
   src = fetchgit {
     inherit rev;
     url = "https://chromium.googlesource.com/infra/luci/luci-go";
-    sha256 = "0hkg2j4y7vqjhfvlgkfjpc0hcrrb08f6nmz00zxrsf7735lv09i9";
+    hash = "sha256-VIruv1/vZw5gaxz4nDFQTq6Nyxi1/CBNBg0mbS75rz4=";
   };
 
-  goDeps = ./deps.nix;
+  vendorHash = "sha256-lLaRFjRgte08Pio2pK3fRy1L+7Sil6RE+RnCKjQjJoU=";
 
   meta = with lib; {
     description = "Chrome Infrastructure Package Deployment";
